@@ -1,0 +1,3277 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Better Call Saul | Ultimate Cinematic Universe</title>
+    <meta
+      name="description"
+      content="Better Call Saul için ultra sinematik, interaktif, karakter odaklı premium fan deneyimi sitesi."
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap");
+
+      :root {
+        --bg-0: #060607;
+        --bg-1: #090b10;
+        --bg-2: #131824;
+        --text: #f4f5f8;
+        --muted: #b8bdca;
+        --gold: #d9a52f;
+        --gold-soft: #ffd979;
+        --red: #b23d34;
+        --green: #2f9577;
+        --line: rgba(255, 255, 255, 0.13);
+        --line-soft: rgba(255, 255, 255, 0.08);
+        --panel: rgba(18, 22, 32, 0.78);
+        --panel-2: rgba(12, 15, 24, 0.76);
+        --blur: 8px;
+        --glow: 0 20px 46px rgba(0, 0, 0, 0.45);
+        --radius-lg: 24px;
+        --radius-md: 16px;
+        --container: min(1240px, 92vw);
+        --accent-gradient: linear-gradient(140deg, rgba(217, 165, 47, 0.23), rgba(178, 61, 52, 0.16));
+      }
+
+      body.liquid-mode {
+        --panel: rgba(255, 255, 255, 0.12);
+        --panel-2: rgba(255, 255, 255, 0.08);
+        --line: rgba(255, 255, 255, 0.28);
+        --line-soft: rgba(255, 255, 255, 0.18);
+        --blur: 16px;
+        --accent-gradient: linear-gradient(145deg, rgba(255, 225, 151, 0.32), rgba(90, 144, 255, 0.22));
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-height: 100vh;
+        font-family: "Manrope", sans-serif;
+        color: var(--text);
+        overflow-x: hidden;
+        background:
+          radial-gradient(circle at 10% 6%, rgba(178, 61, 52, 0.24), transparent 34%),
+          radial-gradient(circle at 88% 12%, rgba(217, 165, 47, 0.18), transparent 36%),
+          linear-gradient(160deg, var(--bg-0), var(--bg-1) 46%, #08090d);
+      }
+
+      body.locked {
+        overflow: hidden;
+      }
+
+      header,
+      main,
+      footer {
+        transition: opacity 0.35s ease, transform 0.35s ease;
+      }
+
+      body.locked header,
+      body.locked main,
+      body.locked footer {
+        opacity: 0;
+        transform: scale(1.02);
+        pointer-events: none;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -4;
+        pointer-events: none;
+        background:
+          linear-gradient(120deg, rgba(7, 9, 13, 0.45), rgba(7, 9, 13, 0.9)),
+          url("https://commons.wikimedia.org/wiki/Special:FilePath/Better%20Call%20Saul%20automobile%20at%20the%20Wheels%20Museum%2C%20Albuquerque.jpg") center / cover no-repeat;
+        opacity: 0.16;
+      }
+
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -3;
+        pointer-events: none;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+        background-size: 44px 44px;
+      }
+
+      .ambient-orbs {
+        position: fixed;
+        inset: 0;
+        z-index: -2;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      .ambient-orbs span {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(44px);
+        opacity: 0.3;
+        animation: orbFloat 14s ease-in-out infinite alternate;
+      }
+
+      .ambient-orbs span:nth-child(1) {
+        width: 320px;
+        height: 320px;
+        left: -80px;
+        top: 30%;
+        background: rgba(217, 165, 47, 0.25);
+      }
+
+      .ambient-orbs span:nth-child(2) {
+        width: 240px;
+        height: 240px;
+        right: 5%;
+        top: 16%;
+        background: rgba(178, 61, 52, 0.22);
+        animation-duration: 17s;
+      }
+
+      .ambient-orbs span:nth-child(3) {
+        width: 260px;
+        height: 260px;
+        right: 20%;
+        bottom: -70px;
+        background: rgba(47, 149, 119, 0.21);
+        animation-duration: 18s;
+      }
+
+      @keyframes orbFloat {
+        from {
+          transform: translateY(-20px) scale(0.95);
+        }
+        to {
+          transform: translateY(26px) scale(1.04);
+        }
+      }
+
+      .noise-layer {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: -1;
+        opacity: 0.11;
+        mix-blend-mode: soft-light;
+        background-image: radial-gradient(rgba(255, 255, 255, 0.23) 0.5px, transparent 0.5px);
+        background-size: 4px 4px;
+      }
+
+      #progressBar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 0;
+        height: 3px;
+        z-index: 110;
+        background: linear-gradient(90deg, #ffd979, #df9a29, #b33c35);
+        box-shadow: 0 0 20px rgba(255, 217, 121, 0.35);
+      }
+
+      .mouse-glow {
+        position: fixed;
+        width: 360px;
+        height: 360px;
+        left: -999px;
+        top: -999px;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 90;
+        mix-blend-mode: screen;
+        filter: blur(36px);
+        opacity: 0.48;
+        background: radial-gradient(circle, rgba(255, 221, 139, 0.5), rgba(178, 61, 52, 0.18) 44%, transparent 72%);
+        transition: width 0.25s ease, height 0.25s ease, opacity 0.25s ease;
+      }
+
+      .mouse-burst {
+        position: fixed;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 120;
+        background: radial-gradient(circle, rgba(255, 233, 156, 0.95), rgba(178, 61, 52, 0.65));
+        box-shadow: 0 0 0 2px rgba(255, 221, 138, 0.35);
+        animation: burst 0.62s ease forwards;
+      }
+
+      @keyframes burst {
+        from {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(0.8);
+        }
+        to {
+          opacity: 0;
+          transform: translate(-50%, -50%) scale(2.5);
+        }
+      }
+
+      .container {
+        width: var(--container);
+        margin-inline: auto;
+      }
+
+      section {
+        padding: 94px 0;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Bebas Neue", sans-serif;
+        line-height: 1;
+        letter-spacing: 0.03em;
+      }
+
+      h2 {
+        font-size: clamp(2.2rem, 4.8vw, 3.9rem);
+      }
+
+      p {
+        line-height: 1.72;
+        color: var(--muted);
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        font-size: 0.76rem;
+        color: #f0c863;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 36px;
+        height: 1px;
+        background: linear-gradient(90deg, rgba(217, 165, 47, 0), rgba(217, 165, 47, 1));
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        padding: 7px 13px;
+        border-radius: 999px;
+        border: 1px solid rgba(217, 165, 47, 0.4);
+        background: rgba(217, 165, 47, 0.13);
+        color: #f5d88f;
+        font-size: 0.72rem;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+      }
+
+      .section-head {
+        margin-bottom: 32px;
+        display: grid;
+        gap: 14px;
+      }
+
+      .glass {
+        border: 1px solid var(--line);
+        background: linear-gradient(145deg, var(--panel), var(--panel-2));
+        backdrop-filter: blur(var(--blur));
+        box-shadow: var(--glow);
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(28px) scale(0.986);
+        transition: opacity 0.75s ease, transform 0.75s ease;
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      .nav-wrap {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(12px);
+        background: linear-gradient(180deg, rgba(6, 7, 9, 0.9), rgba(6, 7, 9, 0.55));
+        border-bottom: 1px solid var(--line-soft);
+      }
+
+      .nav {
+        width: var(--container);
+        min-height: 92px;
+        margin-inline: auto;
+        display: grid;
+        gap: 10px;
+        padding: 10px 0 12px;
+        position: relative;
+      }
+
+      .nav-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+        text-decoration: none;
+      }
+
+      .brand-logo {
+        width: clamp(118px, 14vw, 174px);
+        height: auto;
+        filter: drop-shadow(0 10px 20px rgba(217, 165, 47, 0.26));
+      }
+
+      .brand-meta {
+        display: grid;
+        gap: 2px;
+      }
+
+      .brand-meta strong {
+        color: #f5f6fa;
+        font-size: 0.87rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .brand-meta span {
+        color: #c5cad8;
+        font-size: 0.68rem;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+      }
+
+      .nav-links-row {
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: linear-gradient(145deg, var(--panel), var(--panel-2));
+        backdrop-filter: blur(var(--blur));
+        padding: 6px;
+      }
+
+      .nav-links {
+        list-style: none;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .nav-links a {
+        color: #d8ddea;
+        text-decoration: none;
+        font-size: 0.78rem;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        padding: 9px 12px;
+        border-radius: 10px;
+        transition: background 0.25s ease, color 0.25s ease;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: #fff;
+        background: rgba(217, 165, 47, 0.17);
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .icon-btn {
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: #f3f5fa;
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 11px;
+        padding: 9px 10px;
+        font-size: 0.64rem;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: transform 0.23s ease, border-color 0.23s ease, background 0.23s ease;
+      }
+
+      .icon-btn:hover {
+        transform: translateY(-2px);
+        border-color: rgba(217, 165, 47, 0.65);
+        background: rgba(217, 165, 47, 0.11);
+      }
+
+      .icon-btn.is-on {
+        border-color: rgba(47, 149, 119, 0.75);
+        background: rgba(47, 149, 119, 0.21);
+      }
+
+      .mobile-toggle {
+        display: none;
+      }
+
+      .entry-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 300;
+        display: grid;
+        place-items: center;
+        padding: 22px;
+        background:
+          radial-gradient(circle at 20% 10%, rgba(217, 165, 47, 0.14), transparent 38%),
+          radial-gradient(circle at 86% 20%, rgba(178, 61, 52, 0.17), transparent 40%),
+          linear-gradient(160deg, rgba(4, 5, 8, 0.94), rgba(6, 8, 12, 0.98));
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.35s ease, visibility 0.35s ease;
+      }
+
+      .entry-overlay.active {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+
+      .entry-card {
+        width: min(560px, 96vw);
+        border-radius: 22px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 24px;
+        background: linear-gradient(145deg, rgba(17, 21, 31, 0.86), rgba(10, 12, 18, 0.82));
+        backdrop-filter: blur(18px);
+        box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5);
+      }
+
+      .entry-logo {
+        width: clamp(140px, 35vw, 220px);
+        display: block;
+        margin-bottom: 14px;
+        opacity: 0.9;
+      }
+
+      .entry-title {
+        font-family: "Bebas Neue", sans-serif;
+        letter-spacing: 0.04em;
+        font-size: clamp(2.1rem, 7vw, 3.1rem);
+        margin-bottom: 4px;
+      }
+
+      .entry-sub {
+        color: #d6dceb;
+        margin-bottom: 20px;
+        font-size: 0.95rem;
+      }
+
+      .entry-grid {
+        display: grid;
+        gap: 12px;
+      }
+
+      .entry-field {
+        display: grid;
+        gap: 7px;
+      }
+
+      .entry-field label {
+        font-size: 0.74rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #f2cd72;
+      }
+
+      .entry-field input,
+      .entry-field select {
+        width: 100%;
+        border-radius: 11px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.05);
+        color: #f2f5fc;
+        padding: 12px 12px;
+        font: inherit;
+        outline: none;
+        transition: border-color 0.2s ease, background 0.2s ease;
+      }
+
+      .entry-field input:focus,
+      .entry-field select:focus {
+        border-color: rgba(217, 165, 47, 0.7);
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .entry-field select option {
+        color: #111;
+      }
+
+      .entry-action {
+        margin-top: 10px;
+        width: 100%;
+      }
+
+      .entry-note {
+        margin-top: 10px;
+        color: #bfc7da;
+        font-size: 0.79rem;
+      }
+
+      .splash-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 320;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.35s ease, visibility 0.35s ease;
+        background:
+          radial-gradient(circle at 20% 12%, rgba(217, 165, 47, 0.2), transparent 34%),
+          radial-gradient(circle at 80% 22%, rgba(178, 61, 52, 0.22), transparent 38%),
+          linear-gradient(160deg, rgba(2, 3, 6, 0.98), rgba(5, 7, 11, 0.96));
+      }
+
+      .splash-overlay.active {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+
+      .splash-card {
+        width: min(920px, 96vw);
+        border-radius: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.23);
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.06));
+        backdrop-filter: blur(22px);
+        padding: 30px 28px;
+        display: grid;
+        gap: 12px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .splash-card::before {
+        content: "";
+        position: absolute;
+        inset: -80% auto auto -30%;
+        width: 460px;
+        height: 460px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255, 223, 138, 0.23), transparent 70%);
+        animation: orbFloat 9s ease-in-out infinite alternate;
+      }
+
+      .splash-logo {
+        width: clamp(170px, 32vw, 260px);
+        margin-inline: auto;
+        margin-bottom: 4px;
+        filter: drop-shadow(0 10px 24px rgba(217, 165, 47, 0.32));
+      }
+
+      .splash-name {
+        font-family: "Sora", sans-serif;
+        font-size: clamp(1.42rem, 4.2vw, 2.4rem);
+        letter-spacing: 0.03em;
+        color: #f4f7ff;
+      }
+
+      .splash-sub {
+        margin-top: 2px;
+        color: #f3d07d;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        font-size: 0.71rem;
+      }
+
+      .splash-build {
+        color: #dce2f0;
+        font-size: 0.95rem;
+        line-height: 1.55;
+      }
+
+      .splash-video-wrap {
+        width: min(700px, 94%);
+        margin-inline: auto;
+        min-height: 300px;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.24);
+        background:
+          radial-gradient(circle at 20% 12%, rgba(217, 165, 47, 0.26), transparent 34%),
+          radial-gradient(circle at 80% 76%, rgba(178, 61, 52, 0.26), transparent 35%),
+          linear-gradient(160deg, rgba(6, 8, 12, 0.95), rgba(10, 13, 20, 0.9));
+        overflow: hidden;
+        position: relative;
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+      }
+
+      .splash-video-wrap::after {
+        content: "";
+        position: absolute;
+        inset: auto 0 0;
+        height: 38%;
+        pointer-events: none;
+        background:
+          linear-gradient(180deg, rgba(8, 10, 14, 0), rgba(8, 10, 14, 0.8)),
+          repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.045) 2px, transparent 2px, transparent 15px);
+      }
+
+      .splash-video {
+        width: 100%;
+        height: 100%;
+        min-height: inherit;
+        object-fit: cover;
+        display: block;
+      }
+
+      .splash-bar {
+        width: min(360px, 76%);
+        margin-inline: auto;
+        margin-top: 20px;
+        height: 6px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.14);
+        overflow: hidden;
+      }
+
+      .splash-bar span {
+        display: block;
+        height: 100%;
+        width: 0;
+        background: linear-gradient(90deg, #ffd874, #d99c2d, #b53f35);
+        animation: splashLoad 14s linear forwards;
+      }
+
+      @keyframes splashLoad {
+        to {
+          width: 100%;
+        }
+      }
+
+      .hero {
+        position: relative;
+        padding-top: 82px;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 38px 0 auto;
+        height: 1px;
+        background: linear-gradient(90deg, rgba(217, 165, 47, 0), rgba(217, 165, 47, 0.4), rgba(217, 165, 47, 0));
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: 42px;
+        align-items: center;
+      }
+
+      .hero-copy h1 {
+        font-size: clamp(3rem, 8vw, 6.9rem);
+        margin: 16px 0 15px;
+      }
+
+      .hero-copy p {
+        max-width: 62ch;
+      }
+
+      .hero-cta {
+        margin-top: 26px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 11px;
+      }
+
+      .btn {
+        border: 0;
+        border-radius: 12px;
+        padding: 13px 18px;
+        text-decoration: none;
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-weight: 700;
+        cursor: pointer;
+        transition: transform 0.24s ease, box-shadow 0.24s ease;
+      }
+
+      .btn.primary {
+        color: #171717;
+        background: linear-gradient(145deg, #ffde87, #c68e21);
+        box-shadow: 0 14px 30px rgba(217, 165, 47, 0.32);
+      }
+
+      .btn.secondary {
+        color: #f1f4fa;
+        border: 1px solid rgba(255, 255, 255, 0.23);
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .btn:hover {
+        transform: translateY(-3px);
+      }
+
+      .hero-stats {
+        margin-top: 28px;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .stat {
+        border-radius: 14px;
+        border: 1px solid var(--line);
+        background: linear-gradient(150deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02));
+        padding: 13px 12px;
+      }
+
+      .stat strong {
+        display: block;
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.65rem;
+        letter-spacing: 0.04em;
+      }
+
+      .stat span {
+        font-size: 0.67rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #d3d9e8;
+      }
+
+      .hero-stage {
+        position: relative;
+        min-height: 620px;
+        border-radius: 24px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        background:
+          radial-gradient(circle at 22% 15%, rgba(217, 165, 47, 0.35), transparent 34%),
+          radial-gradient(circle at 82% 72%, rgba(178, 61, 52, 0.34), transparent 35%),
+          linear-gradient(165deg, #121722, #0b0e14 52%, #171c28);
+        box-shadow: var(--glow);
+        transform-style: preserve-3d;
+      }
+
+      .hero-stage::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(5, 6, 9, 0.06), rgba(5, 6, 9, 0.75));
+      }
+
+      .hero-layer {
+        position: absolute;
+        z-index: 2;
+        transition: transform 0.35s ease;
+      }
+
+      .hero-logo {
+        width: min(320px, 72%);
+        top: 8%;
+        left: 8%;
+        opacity: 0.96;
+        filter: drop-shadow(0 8px 24px rgba(217, 165, 47, 0.3));
+      }
+
+      .hero-note {
+        left: 10%;
+        bottom: 44%;
+        width: 56%;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(7, 9, 13, 0.65);
+        padding: 15px;
+      }
+
+      .hero-note p {
+        color: #f2f4fa;
+        font-size: 0.92rem;
+      }
+
+      .hero-note span {
+        display: block;
+        margin-top: 8px;
+        font-size: 0.67rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: #f2cf79;
+      }
+
+      .hero-poster {
+        right: 8%;
+        bottom: 9%;
+        width: 62%;
+        min-height: 230px;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background:
+          linear-gradient(158deg, rgba(7, 9, 14, 0.86), rgba(7, 9, 14, 0.5)),
+          url("https://static.wikia.nocookie.net/breakingbad/images/8/8e/BCS_S6_Portrait_Jimmy.jpg/revision/latest?cb=20220802210840") center top / cover no-repeat;
+        padding: 16px;
+      }
+
+      .hero-poster h3 {
+        font-size: 2rem;
+        margin-bottom: 6px;
+      }
+
+      .hero-poster p {
+        font-size: 0.88rem;
+        max-width: 30ch;
+      }
+
+      .hero-tags {
+        margin-top: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+      }
+
+      .hero-tags span {
+        padding: 5px 10px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        font-size: 0.64rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        background: rgba(0, 0, 0, 0.36);
+      }
+
+      .scan-lines {
+        position: absolute;
+        inset: auto 0 0;
+        height: 41%;
+        z-index: 1;
+        background:
+          linear-gradient(180deg, rgba(12, 14, 20, 0), rgba(12, 14, 20, 0.84)),
+          repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.042), rgba(255, 255, 255, 0.042) 2px, transparent 2px, transparent 17px);
+      }
+
+      .ticker {
+        margin-top: 16px;
+        border-radius: 14px;
+        border: 1px solid var(--line);
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+        padding: 10px 14px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        overflow: hidden;
+      }
+
+      .ticker .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #ff4f44;
+        box-shadow: 0 0 0 8px rgba(255, 79, 68, 0.14);
+        animation: pulseDot 1.6s ease infinite;
+      }
+
+      @keyframes pulseDot {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.25);
+        }
+      }
+
+      .ticker-label {
+        font-size: 0.66rem;
+        letter-spacing: 0.11em;
+        text-transform: uppercase;
+        color: #f4d487;
+        white-space: nowrap;
+      }
+
+      .ticker-text {
+        font-size: 0.9rem;
+        color: #e8ebf6;
+        animation: tickerFade 0.35s ease;
+      }
+
+      .tickerFade {
+        animation: tickerFade 0.35s ease;
+      }
+
+      @keyframes tickerFade {
+        from {
+          opacity: 0;
+          transform: translateY(7px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hunt-area {
+        position: relative;
+      }
+
+      .secret-zone {
+        position: absolute;
+        inset: 0;
+        z-index: 6;
+        pointer-events: none;
+      }
+
+      .secret-item {
+        position: absolute;
+        left: var(--x);
+        top: var(--y);
+        transform: translate(-50%, -50%) scale(0.62);
+        opacity: 0;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 220, 130, 0.34);
+        background: rgba(9, 11, 16, 0.84);
+        color: #f7d98f;
+        padding: 8px 11px;
+        font-size: 0.63rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        white-space: nowrap;
+        transition: opacity 0.24s ease, transform 0.24s ease;
+      }
+
+      .secret-item.found {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      .features {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .feature-card {
+        position: relative;
+        border-radius: 16px;
+        border: 1px solid var(--line);
+        background: linear-gradient(160deg, var(--panel), var(--panel-2));
+        backdrop-filter: blur(var(--blur));
+        padding: 20px;
+        overflow: hidden;
+        transition: transform 0.25s ease, border-color 0.25s ease;
+      }
+
+      .feature-card::before {
+        content: "";
+        position: absolute;
+        inset: -60% auto auto -48%;
+        width: 188px;
+        height: 188px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(217, 165, 47, 0.25), transparent 70%);
+        transition: transform 0.35s ease;
+      }
+
+      .feature-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(120deg, transparent 35%, rgba(255, 255, 255, 0.08) 50%, transparent 65%);
+        transform: translateX(-130%);
+      }
+
+      .feature-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(217, 165, 47, 0.43);
+      }
+
+      .feature-card:hover::before {
+        transform: translate(26px, 20px);
+      }
+
+      .feature-card:hover::after {
+        animation: shine 0.9s ease;
+      }
+
+      @keyframes shine {
+        to {
+          transform: translateX(130%);
+        }
+      }
+
+      .feature-card h3 {
+        font-size: 1.64rem;
+        margin-bottom: 8px;
+      }
+
+      .feature-card p {
+        font-size: 0.9rem;
+      }
+
+      .universe-tabs {
+        margin: 28px 0 18px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .tab-btn {
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background: rgba(255, 255, 255, 0.03);
+        color: #f0f2f9;
+        border-radius: 11px;
+        padding: 10px 14px;
+        font-size: 0.74rem;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: 0.24s ease;
+      }
+
+      .tab-btn.active,
+      .tab-btn:hover {
+        border-color: rgba(217, 165, 47, 0.6);
+        background: rgba(217, 165, 47, 0.14);
+      }
+
+      .tab-panel {
+        border-radius: 16px;
+        border: 1px solid var(--line);
+        background: linear-gradient(145deg, var(--panel), var(--panel-2));
+        backdrop-filter: blur(var(--blur));
+        padding: 22px;
+      }
+
+      .tab-panel h3 {
+        font-size: 1.9rem;
+        margin-bottom: 7px;
+      }
+
+      .characters-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+        margin-bottom: 20px;
+      }
+
+      .char-card {
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        overflow: hidden;
+        background: linear-gradient(170deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+        cursor: pointer;
+        color: #f2f4fa;
+        text-align: left;
+        transform-style: preserve-3d;
+        transition: transform 0.26s ease, border-color 0.26s ease, box-shadow 0.26s ease;
+      }
+
+      .char-card:hover {
+        transform: translateY(-6px);
+        border-color: rgba(217, 165, 47, 0.48);
+      }
+
+      .char-card.active {
+        border-color: rgba(217, 165, 47, 0.78);
+        box-shadow: 0 18px 30px rgba(0, 0, 0, 0.38);
+      }
+
+      .char-thumb {
+        position: relative;
+        aspect-ratio: 4 / 5;
+        background-position: center top;
+        background-size: cover;
+        overflow: hidden;
+      }
+
+      .char-thumb::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(7, 8, 11, 0.08), rgba(7, 8, 11, 0.84));
+      }
+
+      .char-thumb .alias-tag {
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        z-index: 1;
+        padding: 5px 9px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        background: rgba(7, 8, 12, 0.45);
+        font-size: 0.62rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .char-info {
+        padding: 12px;
+      }
+
+      .char-info h4 {
+        font-family: "Sora", sans-serif;
+        font-size: 1.03rem;
+        font-weight: 700;
+        text-transform: none;
+        line-height: 1.32;
+        letter-spacing: 0.012em;
+        margin-bottom: 6px;
+      }
+
+      .char-info p {
+        font-size: 0.73rem;
+        text-transform: uppercase;
+        letter-spacing: 0.09em;
+        color: #d4d9e6;
+      }
+
+      .char-detail {
+        border-radius: 20px;
+        border: 1px solid var(--line);
+        background: linear-gradient(150deg, var(--panel), var(--panel-2));
+        backdrop-filter: blur(var(--blur));
+        overflow: hidden;
+        position: relative;
+      }
+
+      .char-detail::before {
+        content: "";
+        position: absolute;
+        inset: -46% -15% auto auto;
+        width: 360px;
+        height: 360px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(217, 165, 47, 0.25), transparent 70%);
+      }
+
+      .char-detail-grid {
+        position: relative;
+        display: grid;
+        grid-template-columns: 0.9fr 1.1fr;
+      }
+
+      .char-detail-visual {
+        border-right: 1px solid var(--line);
+        background: #090b10;
+        min-height: 100%;
+      }
+
+      .char-detail-visual img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .char-detail-copy {
+        padding: 24px;
+      }
+
+      .char-detail-copy h3 {
+        font-size: clamp(2rem, 4vw, 3.05rem);
+        margin-bottom: 7px;
+      }
+
+      .char-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 14px;
+      }
+
+      .char-meta span {
+        padding: 6px 11px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.17);
+        font-size: 0.69rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .char-list {
+        list-style: none;
+        margin-top: 14px;
+        display: grid;
+        gap: 9px;
+      }
+
+      .char-list li {
+        border: 1px solid rgba(255, 255, 255, 0.13);
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.03);
+        padding: 10px 12px;
+        font-size: 0.9rem;
+        color: #eaedf8;
+      }
+
+      .char-quote {
+        margin-top: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 12px;
+        background: rgba(8, 10, 14, 0.62);
+        padding: 14px;
+      }
+
+      .char-quote p {
+        color: #f4f6fa;
+      }
+
+      .char-quote span {
+        display: block;
+        margin-top: 8px;
+        color: #f3cf7d;
+        font-size: 0.68rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .episode-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .episode-card {
+        position: relative;
+        border-radius: 16px;
+        border: 1px solid var(--line);
+        overflow: hidden;
+        background: linear-gradient(150deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.02));
+        min-height: 240px;
+        padding: 16px;
+        display: grid;
+        align-content: end;
+        transition: transform 0.25s ease, border-color 0.25s ease;
+      }
+
+      .episode-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(7, 9, 13, 0.2), rgba(7, 9, 13, 0.85));
+      }
+
+      .episode-card > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .episode-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(217, 165, 47, 0.45);
+      }
+
+      .episode-card h3 {
+        font-size: 1.85rem;
+        margin: 6px 0 8px;
+      }
+
+      .episode-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+      }
+
+      .episode-meta span {
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        padding: 5px 9px;
+        font-size: 0.64rem;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        background: rgba(0, 0, 0, 0.32);
+      }
+
+      .seasons-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .season-card {
+        border-radius: 16px;
+        border: 1px solid var(--line);
+        background: linear-gradient(160deg, var(--panel), var(--panel-2));
+        backdrop-filter: blur(var(--blur));
+        padding: 20px;
+        transition: transform 0.25s ease, border-color 0.25s ease;
+      }
+
+      .season-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(217, 165, 47, 0.43);
+      }
+
+      .season-top {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+
+      .season-top h3 {
+        font-size: 2rem;
+      }
+
+      .season-year {
+        color: #cfd5e3;
+        font-size: 0.77rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .season-chips {
+        margin-top: 12px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 7px;
+      }
+
+      .season-chips span {
+        padding: 5px 10px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 999px;
+        font-size: 0.66rem;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+      }
+
+      .timeline {
+        position: relative;
+        max-width: 980px;
+        margin-inline: auto;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 12px;
+        bottom: 12px;
+        width: 2px;
+        transform: translateX(-50%);
+        background: linear-gradient(180deg, rgba(217, 165, 47, 0.8), rgba(178, 61, 52, 0.7));
+      }
+
+      .time-item {
+        width: 50%;
+        position: relative;
+        padding: 8px 26px 22px;
+      }
+
+      .time-item:nth-child(odd) {
+        left: 0;
+      }
+
+      .time-item:nth-child(even) {
+        left: 50%;
+      }
+
+      .time-item::before {
+        content: "";
+        position: absolute;
+        top: 22px;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: linear-gradient(145deg, #ffdd8d, #bf8724);
+        box-shadow: 0 0 0 6px rgba(217, 165, 47, 0.2);
+      }
+
+      .time-item:nth-child(odd)::before {
+        right: -7px;
+      }
+
+      .time-item:nth-child(even)::before {
+        left: -7px;
+      }
+
+      .time-card {
+        border-radius: 15px;
+        border: 1px solid var(--line);
+        background: linear-gradient(160deg, var(--panel), var(--panel-2));
+        backdrop-filter: blur(var(--blur));
+        padding: 18px;
+      }
+
+      .time-card h3 {
+        font-size: 1.62rem;
+        margin-bottom: 7px;
+      }
+
+      .quote-box {
+        border-radius: 20px;
+        border: 1px solid var(--line);
+        background:
+          radial-gradient(circle at 14% 10%, rgba(217, 165, 47, 0.24), transparent 38%),
+          linear-gradient(160deg, var(--panel), var(--panel-2));
+        backdrop-filter: blur(var(--blur));
+        padding: 30px;
+        box-shadow: var(--glow);
+      }
+
+      .quote-text {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(2rem, 5vw, 3.6rem);
+        line-height: 1.15;
+        letter-spacing: 0.04em;
+      }
+
+      .quote-author {
+        margin-top: 12px;
+        color: #f3d07d;
+        font-size: 0.78rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      .quote-actions {
+        margin-top: 18px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .quote-fade {
+        animation: quoteFade 0.35s ease;
+      }
+
+      @keyframes quoteFade {
+        from {
+          opacity: 0;
+          transform: translateY(7px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      footer {
+        padding: 62px 0 34px;
+      }
+
+      .footer-card {
+        border-radius: 18px;
+        border: 1px solid var(--line);
+        background: linear-gradient(160deg, var(--panel), var(--panel-2));
+        backdrop-filter: blur(var(--blur));
+        padding: 24px;
+        display: grid;
+        gap: 16px;
+      }
+
+      .footer-top {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+      }
+
+      .footer-brand h3 {
+        font-size: 2rem;
+        margin-bottom: 6px;
+      }
+
+      .badge-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .badge-row span {
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.17);
+        padding: 6px 10px;
+        font-size: 0.67rem;
+        letter-spacing: 0.09em;
+        text-transform: uppercase;
+        color: #dce0ee;
+      }
+
+      .copyright,
+      .credits {
+        color: #b0b7c7;
+        font-size: 0.79rem;
+      }
+
+      .footer-exit {
+        display: flex;
+        justify-content: flex-end;
+      }
+
+      @media (max-width: 1140px) {
+        .hero-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-stage {
+          min-height: 540px;
+        }
+
+        .features {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .characters-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .episode-grid,
+        .seasons-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .char-detail-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .char-detail-visual {
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+          max-height: 560px;
+        }
+      }
+
+      @media (max-width: 900px) {
+        .mobile-toggle {
+          display: inline-flex;
+        }
+
+        .brand-meta {
+          display: none;
+        }
+
+        .nav {
+          gap: 8px;
+          padding-bottom: 10px;
+        }
+
+        .nav-top {
+          align-items: center;
+        }
+
+        .nav-links-row {
+          border: 0;
+          background: none;
+          backdrop-filter: none;
+          padding: 0;
+        }
+
+        .nav-links {
+          position: absolute;
+          left: 4vw;
+          right: 4vw;
+          top: calc(100% + 8px);
+          display: grid;
+          gap: 4px;
+          border-radius: 14px;
+          border: 1px solid rgba(255, 255, 255, 0.14);
+          background: rgba(8, 9, 12, 0.95);
+          backdrop-filter: blur(10px);
+          padding: 12px;
+          opacity: 0;
+          pointer-events: none;
+          transform: translateY(-6px);
+          transition: 0.25s ease;
+        }
+
+        .nav-links.open {
+          opacity: 1;
+          pointer-events: auto;
+          transform: translateY(0);
+        }
+
+        .nav-links a {
+          padding: 11px 12px;
+        }
+
+        .timeline::before {
+          left: 18px;
+          transform: none;
+        }
+
+        .time-item {
+          width: 100%;
+          left: 0 !important;
+          padding-left: 44px;
+          padding-right: 0;
+        }
+
+        .time-item::before {
+          left: 11px !important;
+          right: auto;
+        }
+
+        .splash-card {
+          padding: 22px 16px;
+        }
+
+        .splash-video-wrap {
+          min-height: 240px;
+        }
+      }
+
+      @media (max-width: 670px) {
+        section {
+          padding: 78px 0;
+        }
+
+        .hero-copy h1 {
+          font-size: clamp(2.34rem, 13vw, 4.7rem);
+        }
+
+        .hero-stats,
+        .features,
+        .characters-grid,
+        .episode-grid,
+        .seasons-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-stage {
+          min-height: 500px;
+        }
+
+        .hero-logo {
+          width: 78%;
+        }
+
+        .hero-note {
+          width: 78%;
+          bottom: 46%;
+        }
+
+        .hero-poster {
+          width: 84%;
+        }
+
+        .quote-box {
+          padding: 22px;
+        }
+
+        .splash-card {
+          border-radius: 18px;
+          padding: 18px 12px;
+        }
+
+        .splash-video-wrap {
+          width: 100%;
+          min-height: 190px;
+          border-radius: 14px;
+        }
+
+        .splash-build {
+          font-size: 0.87rem;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          transition: none !important;
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body class="locked">
+    <div id="progressBar"></div>
+    <div class="mouse-glow" id="mouseGlow"></div>
+
+    <div class="ambient-orbs" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="noise-layer" aria-hidden="true"></div>
+
+    <div class="entry-overlay" id="entryOverlay">
+      <div class="entry-card">
+        <img
+          class="entry-logo"
+          src="https://commons.wikimedia.org/wiki/Special:FilePath/Better%20Call%20Saul%20-%20Logo%202.svg"
+          alt="Better Call Saul"
+          loading="lazy"
+        />
+        <h2 class="entry-title">Evrene Giriş</h2>
+        <p class="entry-sub">Kısa dosyanı doldur, sonra <strong>Dünyaya Dal!</strong></p>
+
+        <form id="entryForm" class="entry-grid" autocomplete="off">
+          <div class="entry-field">
+            <label for="entryName">Adın Ne?</label>
+            <input id="entryName" name="entry_name" type="text" maxlength="40" placeholder="Örn: Gökalp" required />
+          </div>
+
+          <div class="entry-field">
+            <label for="entryAge">Yaşın Kaç?</label>
+            <input id="entryAge" name="entry_age" type="number" min="10" max="99" placeholder="Örn: 21" required />
+          </div>
+
+          <div class="entry-field">
+            <label for="entryFav">En Sevdiğin Better Call Saul Karakteri?</label>
+            <select id="entryFav" name="entry_fav" required>
+              <option value="" selected disabled>Karakter Seç</option>
+              <option value="jimmy">Jimmy / Saul</option>
+              <option value="kim">Kim Wexler</option>
+              <option value="mike">Mike Ehrmantraut</option>
+              <option value="gus">Gus Fring</option>
+              <option value="nacho">Nacho Varga</option>
+              <option value="howard">Howard Hamlin</option>
+              <option value="lalo">Lalo Salamanca</option>
+              <option value="chuck">Chuck McGill</option>
+            </select>
+          </div>
+
+          <button class="btn primary entry-action" type="submit">Dünyaya Dal!</button>
+          <p class="entry-note">E-posta, telefon veya şifre istemiyoruz. Sadece deneyimi kişiselleştiriyoruz.</p>
+        </form>
+      </div>
+    </div>
+
+    <div class="splash-overlay" id="splashOverlay" aria-hidden="true">
+      <div class="splash-card">
+        <img
+          class="splash-logo"
+          src="https://commons.wikimedia.org/wiki/Special:FilePath/Better%20Call%20Saul%20-%20Logo%202.svg"
+          alt="Better Call Saul"
+          loading="lazy"
+        />
+        <p class="splash-sub">Siteyi Senin İçin Hazırlıyoruz</p>
+        <p class="splash-build" id="splashBuildText">Favori karakterine göre dosyalar işleniyor.</p>
+        <div class="splash-video-wrap">
+          <video
+            class="splash-video"
+            id="introVideo"
+            src="intro1.mp4"
+            poster="https://static.wikia.nocookie.net/breakingbad/images/8/8e/BCS_S6_Portrait_Jimmy.jpg/revision/latest?cb=20220802210840"
+            preload="auto"
+            playsinline
+            muted
+          ></video>
+        </div>
+        <div class="splash-bar"><span></span></div>
+        <p class="splash-name">Gökalp Goodman</p>
+      </div>
+    </div>
+    <audio id="introAudio" src="intro.mp3" preload="auto"></audio>
+
+    <header class="nav-wrap">
+      <nav class="nav">
+        <div class="nav-top">
+          <a class="brand sound-trigger" href="#ana-sayfa" aria-label="Ana Sayfa">
+            <img
+              class="brand-logo"
+              src="https://commons.wikimedia.org/wiki/Special:FilePath/Better%20Call%20Saul%20-%20Logo%202.svg"
+              alt="Better Call Saul"
+              loading="lazy"
+            />
+            <span class="brand-meta">
+              <strong>Ultimate Cinematic Experience</strong>
+              <span id="brandMeta">Albuquerque Case Archive</span>
+            </span>
+          </a>
+
+          <div class="nav-actions">
+            <button class="icon-btn sound-trigger" id="soundToggle" type="button">Ses FX: Kapalı</button>
+            <button class="icon-btn sound-trigger" id="musicToggle" type="button">Intro Müzik: Kapalı</button>
+            <button class="icon-btn" id="glassToggle" type="button">Liquid Glass: Kapalı</button>
+            <button class="icon-btn mobile-toggle sound-trigger" id="menuToggle" type="button">Menü</button>
+          </div>
+        </div>
+
+        <div class="nav-links-row">
+          <ul class="nav-links" id="navLinks">
+            <li><a class="sound-trigger" href="#ana-sayfa">Ana Sayfa</a></li>
+            <li><a class="sound-trigger" href="#evren">Evren</a></li>
+            <li><a class="sound-trigger" href="#karakterler">Karakterler</a></li>
+            <li><a class="sound-trigger" href="#efsane-bolumler">Efsane Bölümler</a></li>
+            <li><a class="sound-trigger" href="#sezonlar">Sezonlar</a></li>
+            <li><a class="sound-trigger" href="#zaman-akisi">Zaman Akışı</a></li>
+            <li><a class="sound-trigger" href="#sozler">Sözler</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero hunt-area" id="ana-sayfa">
+        <div class="container hero-grid">
+          <div class="hero-copy reveal">
+            <span class="chip" id="heroUserBadge">Ultra Cinematic Fan Experience</span>
+            <h1 id="heroMainTitle">Better Call Saul Evrenine En Derin Giriş</h1>
+            <p id="heroMainText">
+              Jimmy McGill'in Saul Goodman'a dönüşümünü, dizi içi karakter kareleri, interaktif dosya panelleri,
+              gizli notlar, canlı ses katmanları ve premium tasarım diliyle keşfet. Bu sürüm sadece bir fan sitesi
+              değil, Better Call Saul evreninin yaşayan dijital vitrini.
+            </p>
+
+            <div class="hero-cta">
+              <a class="btn primary sound-trigger" href="#karakterler">Karakter Dosyalarını Aç</a>
+              <a class="btn secondary sound-trigger" href="#efsane-bolumler">Efsane Bölümleri İncele</a>
+            </div>
+
+            <div class="hero-stats">
+              <article class="stat">
+                <strong>8</strong>
+                <span>Derin Karakter Profili</span>
+              </article>
+              <article class="stat">
+                <strong>6</strong>
+                <span>Sezon</span>
+              </article>
+              <article class="stat">
+                <strong>63</strong>
+                <span>Bölüm</span>
+              </article>
+              <article class="stat">
+                <strong>12+</strong>
+                <span>İnteraktif Deneyim Katmanı</span>
+              </article>
+            </div>
+
+            <div class="ticker reveal">
+              <span class="dot" aria-hidden="true"></span>
+              <span class="ticker-label" id="tickerLabel">BCS Live Feed</span>
+              <span class="ticker-text" id="tickerText">Sandpiper davası Jimmy'nin kariyer yönünü kalıcı biçimde değiştirdi.</span>
+            </div>
+          </div>
+
+          <div class="hero-stage reveal" id="heroStage">
+            <img
+              class="hero-layer hero-logo"
+              data-depth="22"
+              src="https://commons.wikimedia.org/wiki/Special:FilePath/Better%20Call%20Saul%20-%20Logo%202.svg"
+              alt="Better Call Saul Logo"
+              loading="lazy"
+            />
+
+            <article class="hero-layer hero-note glass" data-depth="12">
+              <p id="heroNoteText">"No one ever accused you of being lazy. Every other sin in the book, but not that one."</p>
+              <span id="heroNoteBy">Chuck McGill</span>
+            </article>
+
+            <article class="hero-layer hero-poster glass" data-depth="30" id="heroPosterCard">
+              <h3 id="heroPosterTitle">Case Focus: Bagman</h3>
+              <p id="heroPosterText">Çölün ortasında sadece para değil, Saul kimliğinin gerçek bedeli de taşınır.</p>
+              <div class="hero-tags">
+                <span>Gerilim Zirvesi</span>
+                <span>Mike &amp; Saul</span>
+                <span>Hayatta Kalma</span>
+              </div>
+            </article>
+
+            <div class="scan-lines" aria-hidden="true"></div>
+
+            <div class="secret-zone" aria-hidden="true">
+              <span class="secret-item" style="--x: 18%; --y: 22%">Gizli Not: Kettleman Klasörü</span>
+              <span class="secret-item" style="--x: 75%; --y: 63%">Gizli Not: 7 Milyonluk Çanta</span>
+              <span class="secret-item" style="--x: 32%; --y: 80%">Gizli Not: Davis &amp; Main Kayıtları</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="evren" class="hunt-area">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow">Dizinin Evreni</span>
+            <h2>Kural, Kimlik ve Kaosun Kesişim Noktası</h2>
+            <p>
+              Better Call Saul, yalnızca bir ön hikaye değil; psikolojik dönüşümün, hukuk manipülasyonunun ve kartel
+              baskısının sahne sahne işlendiği rafine bir anlatı. Her karar yeni bir bedel üretir.
+            </p>
+          </div>
+
+          <div class="features">
+            <article class="feature-card reveal tilt-card">
+              <h3>Hukuk Arenası</h3>
+              <p>Jimmy'nin en büyük silahı yasa metni değil, insan davranışını okuma hızıdır.</p>
+            </article>
+            <article class="feature-card reveal tilt-card">
+              <h3>Kartel Gölgesi</h3>
+              <p>Gus, Salamanca hattı ve Mike disiplini gerilimi her bölümde yükseltir.</p>
+            </article>
+            <article class="feature-card reveal tilt-card">
+              <h3>Kimlik Kırılması</h3>
+              <p>Jimmy, Saul ve Gene arasında her geçişte vicdan çizgisi biraz daha aşınır.</p>
+            </article>
+            <article class="feature-card reveal tilt-card">
+              <h3>Sinematik Ritim</h3>
+              <p>Uzun sessizlikler, desert noir tonları ve kontrollü mizahla eşsiz bir atmosfer kurulur.</p>
+            </article>
+          </div>
+
+          <div class="universe-tabs reveal" role="tablist" aria-label="Evren sekmeleri">
+            <button class="tab-btn active sound-trigger" type="button" data-tab="hukuk">Hukuk Oyunu</button>
+            <button class="tab-btn sound-trigger" type="button" data-tab="kartel">Kartel Dinamiği</button>
+            <button class="tab-btn sound-trigger" type="button" data-tab="kimlik">Kimlik Savaşı</button>
+            <button class="tab-btn sound-trigger" type="button" data-tab="etik">Etik Çöküş</button>
+          </div>
+
+          <article class="tab-panel reveal" id="tabPanel">
+            <h3>Hukuk Oyunu</h3>
+            <p>
+              Jimmy'nin hukuk pratiği yalnızca savunma değil, aynı zamanda bir strateji tiyatrosudur. Duruşma salonu,
+              onun için insanların zayıf noktalarını okuduğu bir satranç tahtasıdır.
+            </p>
+          </article>
+
+          <div class="secret-zone" aria-hidden="true">
+            <span class="secret-item" style="--x: 16%; --y: 20%">Gizli Not: HHM iç yazışması</span>
+            <span class="secret-item" style="--x: 82%; --y: 44%">Gizli Not: Los Pollos raporu</span>
+            <span class="secret-item" style="--x: 52%; --y: 86%">Gizli Not: Sandpiper ifadesi</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="karakterler">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow">Karakter Evreni</span>
+            <h2>Dizi İçi Görsellerle Geniş Karakter Arşivi</h2>
+            <p>
+              Kartlara tıkla, karakter paneli anında yenilensin. Tüm görseller Better Call Saul evreninden alıntı
+              karelerdir ve her dosya kendi dramatik kırılma noktasıyla birlikte gelir.
+            </p>
+          </div>
+
+          <div class="characters-grid reveal" id="characterCards"></div>
+
+          <article class="char-detail reveal" id="characterDetail">
+            <div class="char-detail-grid">
+              <figure class="char-detail-visual">
+                <img id="detailImage" src="" alt="Karakter görseli" loading="lazy" />
+              </figure>
+
+              <div class="char-detail-copy">
+                <h3 id="detailName"></h3>
+                <div class="char-meta">
+                  <span id="detailAlias"></span>
+                  <span id="detailRole"></span>
+                </div>
+                <p id="detailText"></p>
+
+                <ul class="char-list" id="detailPoints"></ul>
+
+                <aside class="char-quote">
+                  <p id="detailQuote"></p>
+                  <span id="detailQuoteAuthor"></span>
+                </aside>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="efsane-bolumler" class="hunt-area">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow">Efsane Bölümler</span>
+            <h2>BCS Evreninde Kilit Dönüm Noktaları</h2>
+            <p>
+              Bu bölümler dizinin tonunu değiştiren ana kırılma noktalarını taşır. Her kart, karakter dönüşümünü ve
+              dramatik ağırlığı başka bir seviyeye taşır.
+            </p>
+          </div>
+
+          <div class="episode-grid">
+            <article
+              class="episode-card reveal tilt-card"
+              style="background: linear-gradient(160deg, rgba(7,9,13,0.22), rgba(7,9,13,0.84)), url('https://static.wikia.nocookie.net/breakingbad/images/8/8e/BCS_S6_Portrait_Jimmy.jpg/revision/latest?cb=20220802210840') center top / cover no-repeat;"
+            >
+              <span class="chip">S5E8</span>
+              <h3>Bagman</h3>
+              <p>Saul'un hayatta kalma refleksi ve Mike'ın soğukkanlı yöntemi çölde kesişir.</p>
+              <div class="episode-meta"><span>Çöl</span><span>Gerilim</span><span>Kimlik Kırılması</span></div>
+            </article>
+
+            <article
+              class="episode-card reveal tilt-card"
+              style="background: linear-gradient(160deg, rgba(7,9,13,0.22), rgba(7,9,13,0.84)), url('https://static.wikia.nocookie.net/breakingbad/images/c/c6/BCS_S6_Portrait_Kim.jpg/revision/latest?cb=20220522174923') center top / cover no-repeat;"
+            >
+              <span class="chip">S6E7</span>
+              <h3>Plan and Execution</h3>
+              <p>Jimmy ve Kim planı tamamlar, fakat bedel sandıklarından çok daha ağır olur.</p>
+              <div class="episode-meta"><span>Şok</span><span>Howard</span><span>Dönüm Noktası</span></div>
+            </article>
+
+            <article
+              class="episode-card reveal tilt-card"
+              style="background: linear-gradient(160deg, rgba(7,9,13,0.22), rgba(7,9,13,0.84)), url('https://static.wikia.nocookie.net/breakingbad/images/f/fd/BCS_S6_Portrait_Lalo.jpg/revision/latest?cb=20220522175118') center top / cover no-repeat;"
+            >
+              <span class="chip">S6E8</span>
+              <h3>Point and Shoot</h3>
+              <p>Lalo ile Gus arasındaki akıl savaşı, yeraltı laboratuvarında final bulur.</p>
+              <div class="episode-meta"><span>Lalo</span><span>Gus</span><span>Kartel</span></div>
+            </article>
+          </div>
+
+          <div class="secret-zone" aria-hidden="true">
+            <span class="secret-item" style="--x: 20%; --y: 72%">Gizli Not: Chicanery kaseti</span>
+            <span class="secret-item" style="--x: 72%; --y: 30%">Gizli Not: Lalo kamera kaydı</span>
+            <span class="secret-item" style="--x: 88%; --y: 82%">Gizli Not: Saul Gone dosyası</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="sezonlar">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow">Sezon Haritası</span>
+            <h2>6 Sezonda Kademeli Kimlik Çözülmesi</h2>
+            <p>
+              Her sezon, Jimmy'nin tercihlerini daha geri döndürülemez bir noktaya taşır. Finalde Saul bir persona
+              değil, bir savunma zırhı olarak kalır.
+            </p>
+          </div>
+
+          <div class="seasons-grid">
+            <article class="season-card reveal tilt-card">
+              <div class="season-top"><h3>Sezon 1</h3><span class="season-year">2015</span></div>
+              <p>Küçük davalar, büyük hayaller ve sistemin ilk açıkları.</p>
+              <div class="season-chips"><span>Başlangıç</span><span>Kardeşlik</span><span>Hustle</span></div>
+            </article>
+
+            <article class="season-card reveal tilt-card">
+              <div class="season-top"><h3>Sezon 2</h3><span class="season-year">2016</span></div>
+              <p>Kurumsal hukuk ile serbest manevra arasında tehlikeli salınım.</p>
+              <div class="season-chips"><span>Kim &amp; Jimmy</span><span>Denge</span><span>Risk</span></div>
+            </article>
+
+            <article class="season-card reveal tilt-card">
+              <div class="season-top"><h3>Sezon 3</h3><span class="season-year">2017</span></div>
+              <p>Chuck kırılması, Gus hattı ve yükselen iç savaş.</p>
+              <div class="season-chips"><span>HHM</span><span>Gus</span><span>Çatışma</span></div>
+            </article>
+
+            <article class="season-card reveal tilt-card">
+              <div class="season-top"><h3>Sezon 4</h3><span class="season-year">2018</span></div>
+              <p>Yas, öfke ve Saul kimliğinin ilk net inşası.</p>
+              <div class="season-chips"><span>Travma</span><span>Lab</span><span>Yeni Yüz</span></div>
+            </article>
+
+            <article class="season-card reveal tilt-card">
+              <div class="season-top"><h3>Sezon 5</h3><span class="season-year">2020</span></div>
+              <p>Saul tam sahnede; kartel gerçeği artık hukukun içine sızar.</p>
+              <div class="season-chips"><span>Lalo</span><span>Bagman</span><span>Basınç</span></div>
+            </article>
+
+            <article class="season-card reveal tilt-card">
+              <div class="season-top"><h3>Sezon 6</h3><span class="season-year">2022</span></div>
+              <p>Kimliklerin hesabı kapanır, vicdan dosyası tekrar açılır.</p>
+              <div class="season-chips"><span>Gene</span><span>Final</span><span>Bedel</span></div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="zaman-akisi" class="hunt-area">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow">Zaman Akışı</span>
+            <h2>Jimmy'den Saul'a 4 Aşamalı Yolculuk</h2>
+            <p>
+              Bu dönüşüm bir anda değil; küçük tavizlerin birikimiyle, ahlaki çizginin kademe kademe aşılmasıyla
+              gerçekleşir.
+            </p>
+          </div>
+
+          <div class="timeline">
+            <article class="time-item reveal">
+              <div class="time-card tilt-card">
+                <h3>1. Vicdanlı Başlangıç</h3>
+                <p>Jimmy hukuk içinde yükselmek ister, ama sistem ona dar gelir.</p>
+              </div>
+            </article>
+            <article class="time-item reveal">
+              <div class="time-card tilt-card">
+                <h3>2. Kural Bükme</h3>
+                <p>İlk etik tavizler, kalıcı strateji alışkanlıklarına dönüşmeye başlar.</p>
+              </div>
+            </article>
+            <article class="time-item reveal">
+              <div class="time-card tilt-card">
+                <h3>3. Saul Persona</h3>
+                <p>Renkli vitrinin arkasında daha sert ve hesapçı bir savunma kimliği oluşur.</p>
+              </div>
+            </article>
+            <article class="time-item reveal">
+              <div class="time-card tilt-card">
+                <h3>4. Gene Yüzleşmesi</h3>
+                <p>Kaçış dönemi kapanır; geçmiş kararların bilançosu nihayet kesilir.</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="secret-zone" aria-hidden="true">
+            <span class="secret-item" style="--x: 22%; --y: 24%">Gizli Not: Slippin' Jimmy</span>
+            <span class="secret-item" style="--x: 76%; --y: 52%">Gizli Not: LWYRUP plakası</span>
+            <span class="secret-item" style="--x: 32%; --y: 86%">Gizli Not: Cinnabon geçmişi</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="sozler" class="hunt-area">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow">İkonik Sözler</span>
+            <h2>Evrenin Hafızasında Kalan Cümleler</h2>
+          </div>
+
+          <article class="quote-box reveal" id="quoteBox">
+            <p class="quote-text" id="quoteText">"No more half measures."</p>
+            <p class="quote-author" id="quoteAuthor">Mike Ehrmantraut</p>
+
+            <div class="quote-actions">
+              <button class="btn primary sound-trigger" id="newQuoteBtn" type="button">Yeni Söz Göster</button>
+              <span class="chip">Liquid Glass modunu dene</span>
+            </div>
+          </article>
+
+          <div class="secret-zone" aria-hidden="true">
+            <span class="secret-item" style="--x: 17%; --y: 35%">Gizli Söz: S'all good, man!</span>
+            <span class="secret-item" style="--x: 67%; --y: 80%">Gizli Söz: Winner takes it all.</span>
+            <span class="secret-item" style="--x: 86%; --y: 30%">Gizli Söz: Tell me again.</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-card reveal">
+          <div class="footer-top">
+            <div class="footer-brand">
+              <h3>Better Call Saul Ultimate Fan Hub</h3>
+              <p>
+                Dizi içi karakter görselleri, interaktif dosya panelleri, gizli easter egg bölgeleri, Liquid Glass
+                görünüm modu ve tema odaklı ses mimarisi ile tasarlanmış üst seviye fan deneyimi.
+              </p>
+            </div>
+
+            <div class="badge-row">
+              <span>Single File</span>
+              <span>Liquid Glass Mode</span>
+              <span>Cinematic Character Stills</span>
+              <span>Theme Audio Engine</span>
+              <span>Mouse Fun Interactions</span>
+            </div>
+          </div>
+
+          <p class="copyright">
+            Bu çalışma fan experience projesidir ve Better Call Saul evrenine estetik/etkileşim odaklı bir saygı
+            duruşu niteliğindedir.
+          </p>
+          <p class="credits">
+            Görseller: Better Call Saul karakter wiki arşivi ve Wikimedia kaynaklı görsel katmanlar.
+          </p>
+          <div class="footer-exit">
+            <button class="icon-btn" id="logoutBtn" type="button">Çıkış Yap</button>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (() => {
+        const body = document.body;
+        const root = document.documentElement;
+
+        const progressBar = document.getElementById("progressBar");
+        const glow = document.getElementById("mouseGlow");
+        const heroStage = document.getElementById("heroStage");
+
+        const navLinks = document.getElementById("navLinks");
+        const menuToggle = document.getElementById("menuToggle");
+        const soundToggle = document.getElementById("soundToggle");
+        const musicToggle = document.getElementById("musicToggle");
+        const glassToggle = document.getElementById("glassToggle");
+        const introAudio = document.getElementById("introAudio");
+        const introVideo = document.getElementById("introVideo");
+
+        const brandMeta = document.getElementById("brandMeta");
+        const entryOverlay = document.getElementById("entryOverlay");
+        const splashOverlay = document.getElementById("splashOverlay");
+        const splashBuildText = document.getElementById("splashBuildText");
+        const entryForm = document.getElementById("entryForm");
+        const entryName = document.getElementById("entryName");
+        const entryAge = document.getElementById("entryAge");
+        const entryFav = document.getElementById("entryFav");
+
+        const heroUserBadge = document.getElementById("heroUserBadge");
+        const heroMainTitle = document.getElementById("heroMainTitle");
+        const heroMainText = document.getElementById("heroMainText");
+        const heroNoteText = document.getElementById("heroNoteText");
+        const heroNoteBy = document.getElementById("heroNoteBy");
+        const heroPosterCard = document.getElementById("heroPosterCard");
+        const heroPosterTitle = document.getElementById("heroPosterTitle");
+        const heroPosterText = document.getElementById("heroPosterText");
+
+        const tabButtons = [...document.querySelectorAll(".tab-btn")];
+        const tabPanel = document.getElementById("tabPanel");
+
+        const tickerLabel = document.getElementById("tickerLabel");
+        const tickerText = document.getElementById("tickerText");
+
+        const characterCards = document.getElementById("characterCards");
+        const detailPanel = document.getElementById("characterDetail");
+        const detailImage = document.getElementById("detailImage");
+        const detailName = document.getElementById("detailName");
+        const detailAlias = document.getElementById("detailAlias");
+        const detailRole = document.getElementById("detailRole");
+        const detailText = document.getElementById("detailText");
+        const detailPoints = document.getElementById("detailPoints");
+        const detailQuote = document.getElementById("detailQuote");
+        const detailQuoteAuthor = document.getElementById("detailQuoteAuthor");
+
+        const quoteBox = document.getElementById("quoteBox");
+        const quoteText = document.getElementById("quoteText");
+        const quoteAuthor = document.getElementById("quoteAuthor");
+        const newQuoteBtn = document.getElementById("newQuoteBtn");
+        const logoutBtn = document.getElementById("logoutBtn");
+
+        const universeTabs = {
+          hukuk: {
+            title: "Hukuk Oyunu",
+            text: "Jimmy'nin hukuk pratiği yalnızca savunma değil, aynı zamanda bir strateji tiyatrosudur. Duruşma salonu, onun için insanların zayıf noktalarını okuduğu bir satranç tahtasıdır.",
+          },
+          kartel: {
+            title: "Kartel Dinamiği",
+            text: "Mike ve Gus çizgisi, kartelin görünmeyen baskısını sürekli hissettirir. Her hamlede düşük hata toleransı ve yüksek bedel vardır.",
+          },
+          kimlik: {
+            title: "Kimlik Savaşı",
+            text: "Jimmy, Saul ve Gene... bu üç yüz aslında aynı insanın farklı hayatta kalma protokolleridir. Her geçişte eski benlikten bir parça silinir.",
+          },
+          etik: {
+            title: "Etik Çöküş",
+            text: "Dizideki karakterler siyah-beyaz değildir. Gri alanlarda alınan kararlar, hem kişisel ilişkileri hem de güç dengelerini geri dönülmez biçimde değiştirir.",
+          },
+        };
+
+        const tickerItems = [
+          "Sandpiper davası Jimmy'nin kariyer yönünü kalıcı biçimde değiştirdi.",
+          "Lalo'nun gelişi, Albuquerque dengelerini birkaç bölümde altüst etti.",
+          "Mike'ın \"no half measures\" felsefesi evrenin sert çekirdeğini tanımlar.",
+          "Kim'in seçimleri, dizinin en güçlü etik kırılma hattını oluşturur.",
+          "Saul markası bir reklam değil, Jimmy'nin psikolojik zırhıdır.",
+        ];
+
+        const characters = [
+          {
+            id: "jimmy",
+            name: "Jimmy McGill",
+            alias: "Saul Goodman",
+            role: "Ceza Avukatı / Stratejist",
+            image:
+              "https://static.wikia.nocookie.net/breakingbad/images/8/8e/BCS_S6_Portrait_Jimmy.jpg/revision/latest?cb=20220802210840",
+            text: "Jimmy'nin zekası, hukuku sadece savunma mekanizması olmaktan çıkarır; onu bir manevra alanına dönüştürür. Saul kimliği, hayatta kalma refleksinin kurumsallaşmış halidir.",
+            points: [
+              "Kriz anında yaratıcı ve yüksek riskli çözümler üretir.",
+              "Müvekkil savunmasında sınırları sürekli zorlar.",
+              "Saul persona'sı, vicdani yükü taşımak için geliştirilmiş bir zırhtır.",
+            ],
+            quote: '"S\'all good, man."',
+            by: "Saul Goodman",
+            accent: "linear-gradient(145deg, rgba(217,165,47,0.27), rgba(178,61,52,0.14))",
+          },
+          {
+            id: "kim",
+            name: "Kim Wexler",
+            alias: "Disiplin ve Çatlak",
+            role: "Avukat / Etik Eşik",
+            image:
+              "https://static.wikia.nocookie.net/breakingbad/images/c/c6/BCS_S6_Portrait_Kim.jpg/revision/latest?cb=20220522174923",
+            text: "Kim, profesyonel mükemmeliyet ile riskli içgüdüler arasında sıkışmış bir denge ustasıdır. Onun hikayesi, dizinin en etkili etik çatışma damarını taşır.",
+            points: [
+              "Rasyonel görünen kararlarının duygusal maliyeti yüksektir.",
+              "Jimmy ile dinamiği karakter dönüşümünü hızlandırır.",
+              "Sessizlik ve kontrollü ifade, en güçlü dramatik araçlarıdır.",
+            ],
+            quote: '"You don\'t save me. I save me."',
+            by: "Kim Wexler",
+            accent: "linear-gradient(145deg, rgba(237,210,127,0.23), rgba(47,149,119,0.18))",
+          },
+          {
+            id: "mike",
+            name: "Mike Ehrmantraut",
+            alias: "Soğukkanlı Operatör",
+            role: "Saha ve Güvenlik Stratejisti",
+            image:
+              "https://static.wikia.nocookie.net/breakingbad/images/4/46/BCS_S6_Portrait_Mike.jpg/revision/latest?cb=20220522174959",
+            text: "Mike'ın dünyasında panik yoktur; sadece prosedür vardır. Kararlarını duygudan değil maliyet hesabından türeten disiplinli bir saha zekasıdır.",
+            points: [
+              "Yüksek riskli operasyonları minimum hatayla yürütür.",
+              "Gus düzeninin sahadaki en güvenilir omurgasıdır.",
+              "Keskin sınırlar koyar: yarım önlem diye bir seçenek yoktur.",
+            ],
+            quote: '"No more half measures."',
+            by: "Mike Ehrmantraut",
+            accent: "linear-gradient(145deg, rgba(217,165,47,0.18), rgba(93,104,125,0.25))",
+          },
+          {
+            id: "gus",
+            name: "Gus Fring",
+            alias: "Maskeli İmparator",
+            role: "İş Adamı / Kartel Stratejisti",
+            image:
+              "https://static.wikia.nocookie.net/breakingbad/images/1/1f/BCS_S4_Gustavo_Fring.jpg/revision/latest?cb=20180824195925",
+            text: "Kusursuz vitrin, acımasız çekirdek. Gus, kamuya yönelik nezaket ile yeraltındaki mutlak kontrolü aynı anda taşıyan bir güç mimarıdır.",
+            points: [
+              "Uzun vadeli stratejiyle rakiplerini yıpratır.",
+              "Düzeni kişisel intikamın en etkili formatına çevirir.",
+              "Sakinliğini hiç kaybetmeden maksimum tehdit üretir.",
+            ],
+            quote: '"I hide in plain sight."',
+            by: "Gus Fring",
+            accent: "linear-gradient(145deg, rgba(47,149,119,0.26), rgba(217,165,47,0.15))",
+          },
+          {
+            id: "nacho",
+            name: "Nacho Varga",
+            alias: "Sıkışmış Zeka",
+            role: "Arada Kalan Oyuncu",
+            image:
+              "https://static.wikia.nocookie.net/breakingbad/images/8/84/Nacho_S6_infobox.jpg/revision/latest?cb=20220721155923",
+            text: "Nacho, hayatta kalma ve aile koruma dürtüsünün kartel düzeniyle çatıştığı en trajik karakter çizgisidir. Her hamlesi, sonrasında daha büyük bir risk üretir.",
+            points: [
+              "Tehditleri önceden sezen yüksek farkındalığa sahiptir.",
+              "Sadakat yerine çıkış stratejisi üzerine düşünür.",
+              "Dizinin en ağır duygusal bedellerinden birini taşır.",
+            ],
+            quote: '"You think of me."',
+            by: "Nacho Varga",
+            accent: "linear-gradient(145deg, rgba(178,61,52,0.29), rgba(217,165,47,0.16))",
+          },
+          {
+            id: "howard",
+            name: "Howard Hamlin",
+            alias: "Kurumsal Yüz",
+            role: "HHM Ortağı",
+            image:
+              "https://static.wikia.nocookie.net/breakingbad/images/5/53/BCS_S6_Portrait_Howard.jpg/revision/latest?cb=20220522175047",
+            text: "İlk bakışta düzenin simgesi, derinde ise baskının taşıyıcısı. Howard'ın hikayesi, algı ile gerçek arasındaki sert kırılmayı gösterir.",
+            points: [
+              "Kurumsal imajı korurken kişisel yük altında ezilir.",
+              "Jimmy-Chuck hattında tampon bölgeye sıkışır.",
+              "Trajik final, dizinin en sarsıcı şoklarından birini yaratır.",
+            ],
+            quote: '"I\'m not your enemy, Jimmy."',
+            by: "Howard Hamlin",
+            accent: "linear-gradient(145deg, rgba(123,157,226,0.2), rgba(217,165,47,0.14))",
+          },
+          {
+            id: "lalo",
+            name: "Lalo Salamanca",
+            alias: "Gülümseyen Tehdit",
+            role: "Salamanca Hattı",
+            image:
+              "https://static.wikia.nocookie.net/breakingbad/images/f/fd/BCS_S6_Portrait_Lalo.jpg/revision/latest?cb=20220522175118",
+            text: "Lalo'nun rahat karizması, ekranın sıcaklığını bir anda tehdit seviyesine çevirir. Oyunu hızlandıran ve dengeyi bozan bir katalizördür.",
+            points: [
+              "Psikolojik baskıyı mizah ve rahatlıkla kurar.",
+              "Saha zekasıyla rakibin planını anında çözer.",
+              "Kartel dinamiğini tek başına yeniden şekillendirir.",
+            ],
+            quote: '"Tell me again."',
+            by: "Lalo Salamanca",
+            accent: "linear-gradient(145deg, rgba(178,61,52,0.3), rgba(247,193,94,0.15))",
+          },
+          {
+            id: "chuck",
+            name: "Chuck McGill",
+            alias: "Kuralın Sesi",
+            role: "Avukat / Kardeş Çatışması",
+            image:
+              "https://static.wikia.nocookie.net/breakingbad/images/3/3e/BCS_S3_ChuckMcGill.jpg/revision/latest?cb=20170327185308",
+            text: "Chuck, hukuku kutsal gören yaklaşımıyla Jimmy'nin pragmatik yöntemlerine karşı dizinin ana etik gerilimini üretir. Kardeş çatışması, tüm evrenin yönünü belirler.",
+            points: [
+              "Kurumsal etik ile kişisel kırgınlığı aynı anda taşır.",
+              "Jimmy'nin kimlik kırılmasını dolaylı olarak hızlandırır.",
+              "Hukuk ideali ile aile bağı arasında sert bir gerilim kurar.",
+            ],
+            quote: '"The law is sacred."',
+            by: "Chuck McGill",
+            accent: "linear-gradient(145deg, rgba(218,181,96,0.2), rgba(107,117,134,0.22))",
+          },
+        ];
+
+        const baseQuotes = [
+          { text: '"No more half measures."', author: "Mike Ehrmantraut" },
+          { text: '"S\'all good, man!"', author: "Saul Goodman" },
+          { text: '"You don\'t save me. I save me."', author: "Kim Wexler" },
+          { text: '"I hide in plain sight."', author: "Gus Fring" },
+          { text: '"You think of me."', author: "Nacho Varga" },
+          { text: '"Tell me again."', author: "Lalo Salamanca" },
+          { text: '"The law is sacred."', author: "Chuck McGill" },
+          { text: '"Have a nice life, Kim."', author: "Jimmy McGill" },
+        ];
+
+        const quoteSubjects = [
+          "Bu şehirde",
+          "Mahkeme salonunda",
+          "Kartel masasında",
+          "Çölün ortasında",
+          "Sessizlik anında",
+          "Bir pazarlıkta",
+          "Vicdan hesabında",
+          "Karanlık bir gecede",
+          "HHM koridorlarında",
+          "Los Pollos vitrininin arkasında",
+          "Kimlik değişirken",
+          "Kırmızı dosyalar açıldığında",
+          "Her dava başlangıcında",
+          "Geri dönüşü olmayan yolda",
+          "Plan bozulduğu anda",
+          "Finale yaklaşırken",
+        ];
+
+        const quoteActions = [
+          "en pahalı şey gerçektir",
+          "kural değil niyet belirleyicidir",
+          "hız bazen hukuktan önce gelir",
+          "sessizlik en sert tehdittir",
+          "gülümseme bazen silahtır",
+          "her taviz yeni bir kapı açar",
+          "doğru hamle her zaman temiz değildir",
+          "beklemek saldırmaktan güçlü olabilir",
+          "maskeler insanı korur ama eksiltir",
+          "güven bir kerelik sermayedir",
+          "saygınlık saniyeler içinde dağılabilir",
+          "zaferin faturası gecikmeli gelir",
+          "vicdan susunca strateji konuşur",
+          "düşman çoğu zaman sabırlıdır",
+          "çıkış yolu bedelsiz olmaz",
+          "haklılık tek başına yetmez",
+        ];
+
+        const quoteEndings = [
+          "ve bunu herkes çok geç anlar",
+          "çünkü oyunun kuralları görünmezdir",
+          "ama bedeli mutlaka geri döner",
+          "ve çoğu kişi bu detayı kaçırır",
+          "çünkü sahne ile perde arkası farklıdır",
+          "ve sonuçlar isimlerden daha kalıcıdır",
+          "çünkü güç sessiz hareket eder",
+          "ve tanıklar hep eksik konuşur",
+          "çünkü anlaşmalar asla simetrik değildir",
+          "ve sonunda herkes hesap verir",
+          "çünkü planlar insan kadar kırılgandır",
+          "ve hikaye her defasında sertleşir",
+          "çünkü korku doğru zamanı bekler",
+          "ve güven çatlağı büyür",
+          "çünkü kimlik tek parça kalamaz",
+          "ve final bunu net biçimde yazar",
+        ];
+
+        const quoteAuthors = [
+          "Saul Goodman",
+          "Kim Wexler",
+          "Mike Ehrmantraut",
+          "Gus Fring",
+          "Nacho Varga",
+          "Howard Hamlin",
+          "Lalo Salamanca",
+          "Chuck McGill",
+        ];
+
+        const generatedQuotes = Array.from({ length: 160 }, (_, index) => {
+          const s = quoteSubjects[index % quoteSubjects.length];
+          const a = quoteActions[(index * 3) % quoteActions.length];
+          const e = quoteEndings[(index * 5) % quoteEndings.length];
+          const author = quoteAuthors[index % quoteAuthors.length];
+          return {
+            text: `"${s} ${a}; ${e}."`,
+            author,
+          };
+        });
+
+        const quotes = [...baseQuotes, ...generatedQuotes];
+
+        let fxEnabled = false;
+        let introMusicEnabled = false;
+        let introLoopTimer = null;
+        let introAudioReady = Boolean(introAudio);
+        let introVideoReady = Boolean(introVideo);
+        let audioCtx;
+        let currentQuote = 0;
+        let tickerIndex = 0;
+        let activeCharacter = characters[0].id;
+        let preferredCharacter = characters[0].id;
+        let profile = { name: "Misafir", age: "", fav: characters[0].id };
+        const SPLASH_DURATION = 14000;
+
+        const getCharacterById = (id) => characters.find((item) => item.id === id);
+        const updateSplashMessage = (characterId) => {
+          if (!splashBuildText) return;
+          const selected = getCharacterById(characterId) || characters[0];
+          splashBuildText.textContent = `Favori karakterin ${selected.name}. Deneyim buna göre hazırlanıyor.`;
+        };
+
+        const getCtx = () => {
+          if (!audioCtx) {
+            const Ctx = window.AudioContext || window.webkitAudioContext;
+            if (Ctx) audioCtx = new Ctx();
+          }
+          return audioCtx;
+        };
+
+        const playTone = ({
+          freq = 440,
+          start = 0,
+          duration = 0.09,
+          type = "triangle",
+          gainLevel = 0.02,
+          attack = 0.01,
+          release = 0.03,
+          filterFreq = 1800,
+          force = false,
+        }) => {
+          if (!force && !fxEnabled) return;
+          const ctx = getCtx();
+          if (!ctx) return;
+
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          const filter = ctx.createBiquadFilter();
+
+          filter.type = "lowpass";
+          filter.frequency.value = filterFreq;
+          osc.type = type;
+          osc.frequency.value = freq;
+
+          osc.connect(filter);
+          filter.connect(gain);
+          gain.connect(ctx.destination);
+
+          const t0 = ctx.currentTime + start;
+          const t1 = t0 + duration;
+
+          gain.gain.value = 0.0001;
+          gain.gain.exponentialRampToValueAtTime(Math.max(0.0001, gainLevel), t0 + attack);
+          gain.gain.exponentialRampToValueAtTime(0.0001, t1 + release);
+
+          osc.start(t0);
+          osc.stop(t1 + release + 0.02);
+        };
+
+        const playSequence = (notes, opts = {}) => {
+          notes.forEach((note, idx) => {
+            playTone({
+              freq: note,
+              start: idx * (opts.step ?? 0.07),
+              duration: opts.duration ?? 0.08,
+              type: opts.type ?? "triangle",
+              gainLevel: opts.gain ?? 0.022,
+              filterFreq: opts.filterFreq ?? 1800,
+              force: Boolean(opts.force),
+            });
+          });
+        };
+
+        const playStreamingIntro = (force = false) => {
+          playTone({
+            freq: 82.4,
+            type: "sine",
+            duration: 0.42,
+            gainLevel: 0.028,
+            filterFreq: 620,
+            force,
+          });
+          playTone({
+            freq: 164.8,
+            type: "triangle",
+            start: 0.012,
+            duration: 0.12,
+            gainLevel: 0.017,
+            filterFreq: 1800,
+            force,
+          });
+          playTone({
+            freq: 98,
+            type: "sine",
+            start: 0.19,
+            duration: 0.45,
+            gainLevel: 0.026,
+            filterFreq: 660,
+            force,
+          });
+          playTone({
+            freq: 196,
+            type: "triangle",
+            start: 0.205,
+            duration: 0.13,
+            gainLevel: 0.015,
+            filterFreq: 1900,
+            force,
+          });
+          playTone({
+            freq: 247,
+            type: "triangle",
+            start: 0.33,
+            duration: 0.18,
+            gainLevel: 0.011,
+            filterFreq: 2100,
+            force,
+          });
+        };
+
+        const setupIntroAudio = () => {
+          if (!introAudio) {
+            introAudioReady = false;
+            return;
+          }
+
+          introAudio.preload = "auto";
+          introAudio.volume = 0.6;
+          introAudio.loop = false;
+
+          introAudio.addEventListener("error", () => {
+            introAudioReady = false;
+          });
+        };
+
+        const setupIntroVideo = () => {
+          if (!introVideo) {
+            introVideoReady = false;
+            return;
+          }
+
+          introVideo.preload = "auto";
+          introVideo.loop = false;
+          introVideo.muted = true;
+          introVideo.playsInline = true;
+
+          introVideo.addEventListener("error", () => {
+            introVideoReady = false;
+          });
+        };
+
+        const playIntroVideo = async () => {
+          if (!introVideo || !introVideoReady) return false;
+          introVideo.currentTime = 0;
+          try {
+            await introVideo.play();
+            return true;
+          } catch (error) {
+            return false;
+          }
+        };
+
+        const stopIntroVideo = () => {
+          if (!introVideo) return;
+          introVideo.pause();
+          introVideo.currentTime = 0;
+        };
+
+        const playIntroMp3 = async ({ loop = false } = {}) => {
+          if (!introAudio || !introAudioReady) return false;
+
+          introAudio.loop = loop;
+          introAudio.currentTime = 0;
+
+          try {
+            await introAudio.play();
+            return true;
+          } catch (error) {
+            return false;
+          }
+        };
+
+        const playPhoneRing = () => {
+          playSequence([990, 740, 990], {
+            type: "square",
+            step: 0.06,
+            duration: 0.04,
+            gain: 0.018,
+            filterFreq: 2800,
+          });
+        };
+
+        const playCashSnap = () => {
+          playSequence([220, 330, 495], {
+            type: "sawtooth",
+            step: 0.045,
+            duration: 0.05,
+            gain: 0.015,
+            filterFreq: 2000,
+          });
+        };
+
+        const startIntroMusic = async () => {
+          if (introMusicEnabled) return;
+          introMusicEnabled = true;
+          musicToggle.textContent = "Intro Müzik: Açık";
+          musicToggle.classList.add("is-on");
+
+          const played = await playIntroMp3({ loop: true });
+          if (played) return;
+
+          const loop = () => {
+            if (!introMusicEnabled) return;
+            playStreamingIntro(true);
+            introLoopTimer = setTimeout(loop, 2800);
+          };
+
+          loop();
+        };
+
+        const stopIntroMusic = () => {
+          introMusicEnabled = false;
+          musicToggle.textContent = "Intro Müzik: Kapalı";
+          musicToggle.classList.remove("is-on");
+
+          if (introAudio) {
+            introAudio.pause();
+            introAudio.currentTime = 0;
+            introAudio.loop = false;
+          }
+
+          if (introLoopTimer) {
+            clearTimeout(introLoopTimer);
+            introLoopTimer = null;
+          }
+        };
+
+        const renderCharacterCards = () => {
+          const ordered = [...characters].sort((a, b) => {
+            if (a.id === preferredCharacter && b.id !== preferredCharacter) return -1;
+            if (b.id === preferredCharacter && a.id !== preferredCharacter) return 1;
+            return 0;
+          });
+
+          characterCards.innerHTML = ordered
+            .map(
+              (char) => `
+                <button class="char-card sound-trigger tilt-card ${char.id === activeCharacter ? "active" : ""}" data-char="${char.id}" type="button">
+                  <div class="char-thumb" style="background-image: url('${char.image}')">
+                    <span class="alias-tag">${char.alias}</span>
+                  </div>
+                  <div class="char-info">
+                    <h4>${char.name}</h4>
+                    <p>${char.role}</p>
+                  </div>
+                </button>
+              `
+            )
+            .join("");
+
+          [...characterCards.querySelectorAll(".char-card")].forEach((card) => {
+            card.addEventListener("click", () => {
+              const id = card.dataset.char;
+              if (id === activeCharacter) {
+                playPhoneRing();
+                return;
+              }
+              activeCharacter = id;
+              renderCharacterCards();
+              renderCharacterDetail(id);
+              setupTiltCards();
+              playCashSnap();
+            });
+          });
+        };
+
+        const renderCharacterDetail = (id) => {
+          const character = getCharacterById(id) || characters[0];
+
+          detailImage.src = character.image;
+          detailImage.alt = `${character.name} karakter görseli`;
+          detailName.textContent = character.name;
+          detailAlias.textContent = character.alias;
+          detailRole.textContent = character.role;
+          detailText.textContent = character.text;
+          detailQuote.textContent = character.quote;
+          detailQuoteAuthor.textContent = character.by;
+
+          detailPoints.innerHTML = character.points.map((item) => `<li>${item}</li>`).join("");
+          detailPanel.style.background = `${character.accent}, linear-gradient(150deg, var(--panel), var(--panel-2))`;
+        };
+
+        const applyProfile = (incoming) => {
+          const selected = getCharacterById(incoming.fav) || characters[0];
+
+          profile = {
+            name: (incoming.name || "Misafir").trim() || "Misafir",
+            age: `${incoming.age || ""}`.trim(),
+            fav: selected.id,
+          };
+
+          preferredCharacter = selected.id;
+          activeCharacter = selected.id;
+
+          const ageText = profile.age ? `${profile.age} yaş` : "BCS Hayranı";
+
+          heroUserBadge.textContent = `${profile.name} • ${ageText} • Favori: ${selected.name}`;
+          heroMainTitle.textContent = `${selected.name} ile Açılan Özel Dosya`;
+          heroMainText.textContent = `${profile.name}, bu deneyim favori karakterin ${selected.name} odağında hazırlanıyor. Kart sıralaması, üst spotlight alanı ve giriş akışı seçimine göre kişiselleştirildi.`;
+
+          heroNoteText.textContent = selected.quote;
+          heroNoteBy.textContent = selected.by;
+          heroPosterTitle.textContent = `${selected.alias} Spotlight`;
+          heroPosterText.textContent = selected.text;
+          heroPosterCard.style.background = `linear-gradient(158deg, rgba(7, 9, 14, 0.86), rgba(7, 9, 14, 0.5)), url('${selected.image}') center top / cover no-repeat`;
+
+          brandMeta.textContent = `${profile.name} · Favori: ${selected.alias}`;
+          tickerLabel.textContent = `${profile.name.toUpperCase()} FEED`;
+          updateSplashMessage(selected.id);
+
+          renderCharacterCards();
+          renderCharacterDetail(selected.id);
+          setupTiltCards();
+        };
+
+        const showEntryScreen = (clearForm = false) => {
+          stopIntroMusic();
+          stopIntroVideo();
+          navLinks.classList.remove("open");
+          menuToggle.textContent = "Menü";
+          body.classList.add("locked");
+          splashOverlay.classList.remove("active");
+          splashOverlay.setAttribute("aria-hidden", "true");
+          entryOverlay.classList.add("active");
+
+          if (clearForm) {
+            entryForm.reset();
+            entryFav.value = "";
+          }
+
+          window.scrollTo({ top: 0, behavior: "auto" });
+          setTimeout(() => entryName.focus(), 20);
+        };
+
+        const setupEntryFlow = () => {
+          let stored = null;
+          try {
+            stored = JSON.parse(localStorage.getItem("bcs-entry-profile") || "null");
+          } catch (error) {
+            stored = null;
+          }
+
+          if (stored?.name && stored?.fav) {
+            entryName.value = stored.name;
+            entryAge.value = stored.age || "";
+            entryFav.value = stored.fav;
+            applyProfile(stored);
+            entryOverlay.classList.remove("active");
+            splashOverlay.classList.remove("active");
+            splashOverlay.setAttribute("aria-hidden", "true");
+            body.classList.remove("locked");
+          } else {
+            applyProfile({ name: "Misafir", age: "", fav: characters[0].id });
+            showEntryScreen();
+          }
+
+          entryForm.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const name = entryName.value.trim();
+            const age = entryAge.value.trim();
+            const fav = entryFav.value;
+
+            if (!name || !age || !fav) return;
+
+            const payload = { name, age, fav };
+            localStorage.setItem("bcs-entry-profile", JSON.stringify(payload));
+
+            applyProfile(payload);
+            entryOverlay.classList.remove("active");
+            splashOverlay.classList.add("active");
+            splashOverlay.setAttribute("aria-hidden", "false");
+
+            const ctx = getCtx();
+            if (ctx && ctx.state === "suspended") {
+              try {
+                await ctx.resume();
+              } catch (error) {}
+            }
+
+            updateSplashMessage(fav);
+            await startIntroMusic();
+            await playIntroVideo();
+
+            setTimeout(() => {
+              splashOverlay.classList.remove("active");
+              splashOverlay.setAttribute("aria-hidden", "true");
+              body.classList.remove("locked");
+              stopIntroVideo();
+            }, SPLASH_DURATION);
+          });
+        };
+
+        const setupLogout = () => {
+          if (!logoutBtn) return;
+          logoutBtn.addEventListener("click", () => {
+            localStorage.removeItem("bcs-entry-profile");
+            fxEnabled = false;
+            soundToggle.textContent = "Ses FX: Kapalı";
+            soundToggle.classList.remove("is-on");
+            showEntryScreen(true);
+          });
+        };
+
+        const setupTabs = () => {
+          tabButtons.forEach((btn) => {
+            btn.addEventListener("click", () => {
+              const key = btn.dataset.tab;
+              const data = universeTabs[key];
+              if (!data) return;
+
+              tabButtons.forEach((item) => item.classList.remove("active"));
+              btn.classList.add("active");
+              tabPanel.innerHTML = `<h3>${data.title}</h3><p>${data.text}</p>`;
+
+              tabPanel.classList.remove("quote-fade");
+              void tabPanel.offsetWidth;
+              tabPanel.classList.add("quote-fade");
+
+              playPhoneRing();
+            });
+          });
+        };
+
+        const setupQuotes = () => {
+          newQuoteBtn.addEventListener("click", () => {
+            let next = Math.floor(Math.random() * quotes.length);
+            if (next === currentQuote) next = (currentQuote + 1) % quotes.length;
+            currentQuote = next;
+
+            quoteText.textContent = quotes[currentQuote].text;
+            quoteAuthor.textContent = quotes[currentQuote].author;
+
+            quoteText.classList.remove("quote-fade");
+            quoteAuthor.classList.remove("quote-fade");
+            void quoteBox.offsetWidth;
+            quoteText.classList.add("quote-fade");
+            quoteAuthor.classList.add("quote-fade");
+
+            playSequence([523, 659, 523, 392], {
+              type: "triangle",
+              step: 0.055,
+              duration: 0.06,
+              gain: 0.02,
+              filterFreq: 2100,
+            });
+          });
+        };
+
+        const setupTicker = () => {
+          setInterval(() => {
+            tickerIndex = (tickerIndex + 1) % tickerItems.length;
+            tickerText.textContent = tickerItems[tickerIndex];
+            tickerText.classList.remove("tickerFade");
+            void tickerText.offsetWidth;
+            tickerText.classList.add("tickerFade");
+          }, 4200);
+        };
+
+        const setupReveal = () => {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add("visible");
+                observer.unobserve(entry.target);
+              });
+            },
+            { threshold: 0.16 }
+          );
+
+          document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+        };
+
+        const setupNavActive = () => {
+          const links = [...document.querySelectorAll(".nav-links a")];
+          const sections = links.map((link) => document.querySelector(link.getAttribute("href"))).filter(Boolean);
+
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                const hash = `#${entry.target.id}`;
+                links.forEach((link) => {
+                  link.classList.toggle("active", link.getAttribute("href") === hash);
+                });
+              });
+            },
+            { threshold: 0.45 }
+          );
+
+          sections.forEach((section) => observer.observe(section));
+        };
+
+        const setupMobileMenu = () => {
+          menuToggle.addEventListener("click", () => {
+            const isOpen = navLinks.classList.toggle("open");
+            menuToggle.textContent = isOpen ? "Kapat" : "Menü";
+            playPhoneRing();
+          });
+
+          [...navLinks.querySelectorAll("a")].forEach((link) => {
+            link.addEventListener("click", () => {
+              navLinks.classList.remove("open");
+              menuToggle.textContent = "Menü";
+            });
+          });
+        };
+
+        const setupHeroParallax = () => {
+          if (!heroStage) return;
+          const layers = [...heroStage.querySelectorAll(".hero-layer")];
+
+          heroStage.addEventListener("mousemove", (event) => {
+            const rect = heroStage.getBoundingClientRect();
+            const dx = event.clientX - rect.left;
+            const dy = event.clientY - rect.top;
+            const rx = dx / rect.width - 0.5;
+            const ry = dy / rect.height - 0.5;
+
+            layers.forEach((layer) => {
+              const depth = Number(layer.dataset.depth) || 10;
+              layer.style.transform = `translate3d(${-rx * depth}px, ${-ry * depth}px, 0)`;
+            });
+          });
+
+          heroStage.addEventListener("mouseleave", () => {
+            layers.forEach((layer) => {
+              layer.style.transform = "translate3d(0,0,0)";
+            });
+          });
+        };
+
+        const spawnBurst = (x, y) => {
+          const burst = document.createElement("span");
+          burst.className = "mouse-burst";
+          burst.style.left = `${x}px`;
+          burst.style.top = `${y}px`;
+          document.body.appendChild(burst);
+          setTimeout(() => burst.remove(), 650);
+        };
+
+        const setupMouseEffects = () => {
+          const interactiveSelector =
+            ".btn, .icon-btn, .tab-btn, .feature-card, .char-card, .episode-card, .season-card, .time-card, .quote-box";
+
+          window.addEventListener("pointermove", (event) => {
+            const x = event.clientX;
+            const y = event.clientY;
+            glow.style.left = `${x}px`;
+            glow.style.top = `${y}px`;
+            root.style.setProperty("--mx", `${x}px`);
+            root.style.setProperty("--my", `${y}px`);
+          });
+
+          document.addEventListener("pointerover", (event) => {
+            const target = event.target;
+            if (!(target instanceof Element)) return;
+            if (!target.closest(interactiveSelector)) return;
+            glow.style.width = "470px";
+            glow.style.height = "470px";
+            glow.style.opacity = "0.62";
+          });
+
+          document.addEventListener("pointerout", (event) => {
+            const target = event.target;
+            if (!(target instanceof Element)) return;
+            if (!target.closest(interactiveSelector)) return;
+
+            const related = event.relatedTarget;
+            if (related instanceof Element && related.closest(interactiveSelector)) return;
+
+            glow.style.width = "360px";
+            glow.style.height = "360px";
+            glow.style.opacity = "0.48";
+          });
+
+          document.addEventListener("pointerdown", (event) => {
+            spawnBurst(event.clientX, event.clientY);
+          });
+        };
+
+        const setupSecrets = () => {
+          document.querySelectorAll(".hunt-area").forEach((area) => {
+            const notes = [...area.querySelectorAll(".secret-item")];
+            if (!notes.length) return;
+
+            area.addEventListener("pointermove", (event) => {
+              notes.forEach((note) => {
+                const rect = note.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                const distance = Math.hypot(event.clientX - centerX, event.clientY - centerY);
+                const radius = Math.max(95, rect.width * 1.8);
+                const found = distance < radius;
+
+                note.classList.toggle("found", found);
+                if (found && !note.dataset.played) {
+                  note.dataset.played = "1";
+                  playSequence([784, 1046], {
+                    type: "triangle",
+                    step: 0.05,
+                    duration: 0.055,
+                    gain: 0.014,
+                    filterFreq: 2600,
+                  });
+                }
+              });
+            });
+
+            area.addEventListener("pointerleave", () => {
+              notes.forEach((note) => {
+                note.classList.remove("found");
+                note.dataset.played = "";
+              });
+            });
+          });
+        };
+
+        const setupTiltCards = () => {
+          document.querySelectorAll(".tilt-card").forEach((card) => {
+            card.addEventListener("mousemove", (event) => {
+              if (window.matchMedia("(max-width: 900px)").matches) return;
+              const rect = card.getBoundingClientRect();
+              const px = (event.clientX - rect.left) / rect.width - 0.5;
+              const py = (event.clientY - rect.top) / rect.height - 0.5;
+              const rx = py * -8;
+              const ry = px * 10;
+              card.style.transform = `perspective(860px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+            });
+
+            card.addEventListener("mouseleave", () => {
+              card.style.transform = "";
+            });
+          });
+        };
+
+        const setupProgressBar = () => {
+          const update = () => {
+            const scrollTop = window.scrollY;
+            const max = document.body.scrollHeight - window.innerHeight;
+            const ratio = max > 0 ? (scrollTop / max) * 100 : 0;
+            progressBar.style.width = `${Math.min(100, Math.max(0, ratio))}%`;
+          };
+
+          update();
+          window.addEventListener("scroll", update, { passive: true });
+          window.addEventListener("resize", update);
+        };
+
+        const setupGlassMode = () => {
+          const saved = localStorage.getItem("bcs-glass") === "1";
+          if (saved) {
+            body.classList.add("liquid-mode");
+            glassToggle.textContent = "Liquid Glass: Açık";
+            glassToggle.classList.add("is-on");
+          }
+
+          glassToggle.addEventListener("click", () => {
+            const enabled = body.classList.toggle("liquid-mode");
+            glassToggle.textContent = enabled ? "Liquid Glass: Açık" : "Liquid Glass: Kapalı";
+            glassToggle.classList.toggle("is-on", enabled);
+            localStorage.setItem("bcs-glass", enabled ? "1" : "0");
+
+            playSequence([523, 659, 784], {
+              type: enabled ? "triangle" : "sine",
+              step: 0.045,
+              duration: 0.05,
+              gain: 0.016,
+              filterFreq: 2200,
+            });
+          });
+        };
+
+        const setupSound = () => {
+          soundToggle.addEventListener("click", async () => {
+            fxEnabled = !fxEnabled;
+            soundToggle.textContent = fxEnabled ? "Ses FX: Açık" : "Ses FX: Kapalı";
+            soundToggle.classList.toggle("is-on", fxEnabled);
+
+            if (fxEnabled) {
+              const ctx = getCtx();
+              if (ctx && ctx.state === "suspended") {
+                try {
+                  await ctx.resume();
+                } catch (error) {
+                  fxEnabled = false;
+                  soundToggle.textContent = "Ses FX: Kapalı";
+                  soundToggle.classList.remove("is-on");
+                }
+              }
+              playPhoneRing();
+            }
+          });
+
+          document.body.addEventListener("click", (event) => {
+            const target = event.target;
+            if (!(target instanceof HTMLElement)) return;
+
+            if (
+              target.closest(".sound-trigger") &&
+              !target.closest("#soundToggle") &&
+              !target.closest("#musicToggle")
+            ) {
+              playPhoneRing();
+            }
+          });
+        };
+
+        const setupMusic = () => {
+          musicToggle.addEventListener("click", async () => {
+            const ctx = getCtx();
+            if (ctx && ctx.state === "suspended") {
+              try {
+                await ctx.resume();
+              } catch (error) {}
+            }
+
+            if (introMusicEnabled) {
+              stopIntroMusic();
+            } else {
+              await startIntroMusic();
+            }
+          });
+        };
+
+        body.classList.add("locked");
+        setupTabs();
+        setupQuotes();
+        setupTicker();
+        setupReveal();
+        setupNavActive();
+        setupMobileMenu();
+        setupHeroParallax();
+        setupMouseEffects();
+        setupSecrets();
+        setupTiltCards();
+        setupProgressBar();
+        setupGlassMode();
+        setupSound();
+        setupIntroAudio();
+        setupIntroVideo();
+        setupMusic();
+        setupEntryFlow();
+        setupLogout();
+      })();
+    </script>
+  </body>
+</html>
